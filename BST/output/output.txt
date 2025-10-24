@@ -1,12 +1,12 @@
-Added 52 to inputArray[0]
-Added 62 to inputArray[1]
-Added 61 to inputArray[2]
-Added 68 to inputArray[3]
-Added 42 to inputArray[4]
-Added 11 to inputArray[5]
-Added 13 to inputArray[6]
-Added 3 to inputArray[7]
-Added 80 to inputArray[8]
-Added 18 to inputArray[9]
+Added 37 to inputArray[0]
+Added 4 to inputArray[1]
+Added 67 to inputArray[2]
+Added 59 to inputArray[3]
+Added 34 to inputArray[4]
+Added 17 to inputArray[5]
+Added 19 to inputArray[6]
+Added 22 to inputArray[7]
+Added 88 to inputArray[8]
+Added 58 to inputArray[9]
 BST created successfully!
-In-order traversal (sorted): 3 11 13 18 42 52 61 62 68 80 
+In-order traversal (sorted): 4 17 19 22 34 37 58 59 67 88 
