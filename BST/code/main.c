@@ -126,6 +126,15 @@ Node * predecessor(Node * node)
     }
 }
 
+void deleteNode(Node * root , int value)
+{
+    Node * node = search(root, value);
+    Node * parent = predecessor(node);
+    if(node -> left == NULL)
+    {
+        parent ->
+    }
+}
 Node *getMinimum(Node * currentNode)
 {
    if (currentNode == NULL || currentNode->left == NULL) 
