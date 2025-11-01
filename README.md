@@ -1,4 +1,4 @@
-# Data-Structures-by-Nikhil-Sathe-in-C
+# Data-Structures-in-C
 
 ## BUILD & Run example:
 - `cd BST/code/`
