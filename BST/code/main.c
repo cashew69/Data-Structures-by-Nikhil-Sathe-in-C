@@ -126,15 +126,29 @@ Node * predecessor(Node * node)
     }
 }
 
-void deleteNode(Node * root , int value)
+Node* transplant(Node* root, Node* toBeRemoved, Node* toBePut)
 {
-    Node * node = search(root, value);
-    Node * parent = predecessor(node);
-    if(node -> left == NULL)
+    if (toBeRemoved->parent == NULL)
     {
-        parent ->
+        root = toBePut;  
     }
+    else if (toBeRemoved == toBeRemoved->parent->left)
+    {
+        toBeRemoved->parent->left = toBePut;
+    }
+    else
+    {
+        toBeRemoved->parent->right = toBePut;
+    }
+    
+    if (toBePut != NULL)
+    {
+        toBePut->parent = toBeRemoved->parent;
+    }
+    
+    return root;  
 }
+
 Node *getMinimum(Node * currentNode)
 {
    if (currentNode == NULL || currentNode->left == NULL) 
@@ -151,6 +165,46 @@ Node *getMaximum(Node * currentNode)
     return currentNode;
    }
     return getMaximum(currentNode->right);
+}
+
+Node* deleteNode(Node* root, int value)
+{
+    Node* node = search(root, value);
+    
+    if (node == NULL) {
+        printf("Value %d not found\n", value);
+        return root;
+    }
+    
+    if (node->left == NULL)
+    {
+        root = transplant(root, node, node->right);
+        free(node);
+    }
+    else if (node->right == NULL)
+    {
+        root = transplant(root, node, node->left);
+        free(node);
+    }
+    else 
+    {
+        Node* succ = successor(node); 
+        
+        if (succ->parent != node) 
+        {
+            root = transplant(root, succ, succ->right);
+            succ->right = node->right;
+            succ->right->parent = succ;
+        }
+        
+        root = transplant(root, node, succ);
+        succ->left = node->left;
+        succ->left->parent = succ;
+        
+        free(node);
+    }
+    
+    return root;
 }
 
 int main(int argc, char *argv[]) {
@@ -268,6 +322,16 @@ int main(int argc, char *argv[]) {
                 }
             }
         }
+        else if (strcmp(command, "delete") == 0 && args == 2) {
+            Node* result = search(root, value);
+            if (result == NULL) {
+                printf("✗ %d not in tree\n", value);
+            } else {
+                root = deleteNode(root, value);
+                printf("✓ Deleted %d\n", value);
+            }
+        }
+
         else if (strcmp(command, "clear") == 0) {
             // TODO: Properly free memory
             root = NULL;
@@ -282,6 +346,7 @@ int main(int argc, char *argv[]) {
             printf("  max              - Find maximum value\n");
             printf("  successor <n>    - Find successor of n\n");
             printf("  predecessor <n>  - Find predecessor of n\n");
+            printf("  delete <n>       - Find and Delete the node from tree\n");
             printf("  clear            - Clear the tree\n");
             printf("  help             - Show this help\n");
             printf("  quit             - Exit program\n\n");
