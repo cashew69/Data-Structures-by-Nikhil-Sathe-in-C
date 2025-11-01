@@ -3,7 +3,11 @@
 ## BUILD & Run example:
 - `cd BST/code/`
 - `sh build.sh`
-- `../tests/`
+- `cd ../tests/`
 - `sh test.sh > ../output/output.txt`
-- `cat ../output/output.txt`  
+- `cat ../output/output.txt`
+
+## Interactive BST Shell
+
+![Interactive BST Demo](output-screenshots/interactive_BST.png)
 
